@@ -1,32 +1,164 @@
-.App {
+.App-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background: white;
+  border-bottom: 1px solid #ccc;
+  z-index: 999;
+}
+
+.App-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background: white;
+  border-top: 1px solid #ccc;
+}
+body {
+  background:#f0f0f0;
+}
+img {
+  height: 215px;
+  display: flex;
+  margin: 0 auto;
+}
+
+.container {
+  width: 100%;
+  padding: 10px 20px;
+  margin-top: 60px;
+}
+.card-grid {
+  width:100%;
+  margin-top: 10px;
+  margin-bottom: 60px;
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.card-grid:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.card-wrap {
+  padding:5px;
+  width: fit-content;
+  display: inline-grid;
+}
+
+
+.card {
+  background-color:white;
+  border-radius:5px;
+  border:1px solid #ccc;
+  border-bottom:2px solid #ccc;
+  width: 250px;
+  height: 365px;
+  position: relative;
+}
+.card > div {
+  padding:0 1em;
+}
+
+.payment-button {
+  width: 88%;
+  background: transparent;
+  border-color: #9aff9a;
+  padding: 5px;
+  font-size: 20px;
+  margin: 0 14px;
+}
+
+.payment-buttons {
+  width: 88%;
+  display: inline-flex;
+  border: 1px solid #9aff9a;
+  font-size: 20px;
+  margin: 0 14px;
+  padding: 5px;
+}
+
+.bag-notification {
+  position: fixed;
+  height: 40px;
+  width: calc(100% - 40px);
+  background: #2dad2d;
+  bottom: 70px;
+  margin: 0 20px;
+  font-size: 21px;
+  padding: 4px 12px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.button-color {
+  background: #9aff9a;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.default-offer {
+  font-size: 15px;
+  position: absolute;
+  top: 51px;
+  left: 2px;
+  background: #FF9800;
 }
+
+.search {
+  position: relative;
+}
+
+.search input {
+  text-indent: 10px;
+  font-size: 22px;
+  width: 100%;
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+}
+
+.refresh, .user-profile {
+  float: right;
+  margin: 15px;
+  font-size: 20px;
+}
+
+button.products i::after {
+  content: "\f290";
+  display: block;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.products {
+  color: green;
+}
+
+button.my-orders i::after {
+  content: "\f07a";
+  display: block;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  color: black;
+}
+
+.my-orders, .products {
+  width: 50%;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.my-orders i, .products i {
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
