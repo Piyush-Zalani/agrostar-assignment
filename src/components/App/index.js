@@ -8,6 +8,7 @@ import SearchBar from '../SearchBar';
 import Footer from '../Footer';
 import BagItems from '../BagItems';
 import AddToCart from '../AddToCart';
+import Loader from '../Loader';
 import { CardWrap, Card, CardGrid, Container, DefaultOffer, StyledImage } from './style';
 
 class App extends Component {
@@ -22,11 +23,12 @@ class App extends Component {
   componentWillMount() {
     this.getProducts()
   }
-  getProducts() {
+  getProducts = () => {
+    this.setState({ loading: true });
     this.props.productActions.fetchProducts().then((product) => {
-      this.setState({ productList: get(product, 'products.data.responseData.productList', []) })
+      this.setState({ productList: get(product, 'products.data.responseData.productList', []), loading: false })
     });
-  }
+  };
   onSearchChange = (e) => {
     this.setState({
       productSearchedList: e.target.value ?
@@ -58,11 +60,9 @@ class App extends Component {
   };
   render() {
     let { productList, items, productSearchedList, loading } = this.state;
-    if (loading) {
-      return (<div>Loading...</div>)
-    }
     return (
       <div>
+        {loading && <Loader/>}
         <Header getProducts={this.getProducts}/>
         <Container>
           <SearchBar onSearchChange={this.onSearchChange}/>
