@@ -18,7 +18,13 @@ const HeaderIcons = styled.span`
   font-size: 20px;
 `;
 
+const StyledImage = styled.img`
+  height: 42px;
+  margin-top: 3px;
+`;
+
 export {
   AppHeader,
-  HeaderIcons
+  HeaderIcons,
+  StyledImage
 }
