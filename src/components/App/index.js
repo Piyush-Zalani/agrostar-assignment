@@ -83,9 +83,9 @@ class App extends Component {
                       <AddToCart
                         items={items}
                         product={product}
-                        onIncrement={this.onIncrement}
-                        onDecrement={this.onDecrement}
-                        addToCart={this.addToCart}
+                        onIncrement={() => this.onIncrement(product)}
+                        onDecrement={() => this.onDecrement(product)}
+                        addToCart={() => this.addToCart(product)}
                       />
                     </Card>
                   </CardWrap>
