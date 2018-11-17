@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import get from 'lodash/get';
+import * as productActions from '../../actions/productsAction';
 import Header from '../Header';
 import SearchBar from '../SearchBar';
 import Footer from '../Footer';
 import BagItems from '../BagItems';
 import AddToCart from '../AddToCart';
-import { API_URL } from '../../constants';
 import { CardWrap, Card, CardGrid, Container, DefaultOffer, StyledImage } from './style';
 
-class Index extends Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -17,18 +19,13 @@ class Index extends Component {
       items: JSON.parse(localStorage.getItem('items')) || []
     };
   }
-  componentDidMount() {
-    this.getProducts();
+  componentWillMount() {
+    this.getProducts()
   }
   getProducts() {
-    this.setState({ loading: true });
-    axios.get(`${API_URL}5b3de5ed310000db1f6de257`)
-      .then((response) => {
-        this.setState({ productList: response.data.responseData.productList || [], loading: false })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    this.props.productActions.fetchProducts().then((product) => {
+      this.setState({ productList: get(product, 'products.data.responseData.productList', []) })
+    });
   }
   onSearchChange = (e) => {
     this.setState({
@@ -104,4 +101,19 @@ class Index extends Component {
   }
 }
 
-export default Index;
+function mapStateToProps(state) {
+  return {
+    products: state.products
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    productActions: bindActionCreators(productActions, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
